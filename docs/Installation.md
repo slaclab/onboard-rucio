@@ -30,9 +30,9 @@ The output of above command is a rucio with tag rucio/rucio-dev:latest, which wi
 
 To launch the now ready containers, in rucio/etc/docker/dev:
 ```
-    docker-compose --file [docker-compose.yml](./lcls-docker-compose.yml) up -d
+    docker-compose --file docker-compose.yml up -d
 ```
-If successful, three containers will be up and running: 1)dev_rucio_1 (server) 2) dev_rucio_db1 (Postgres) 3) dev_graphite_1 (monitoring).
+If successful, three containers will be up and running: 1)dev_rucio_1 (server) 2) dev_rucio_db1 (Postgres) 3) dev_graphite_1 (monitoring). Here is an example [docker-compose.yml for lcls](./lcls-docker-compose.yml).
 
 To stop the rucio containers:
 ```
