@@ -1,0 +1,8 @@
+[client]
+rucio_host = https://rucio-dev.slac.stanford.edu:8443
+auth_host = https://rucio-dev.slac.stanford.edu:8443
+auth_type = x509_proxy
+client_cert = $HOME/.globus/usercert.pem
+client_key  = $HOME/.globus/userkey.pem
+client_x509_proxy = $X509_USER_PROXY
+request_retries = 3

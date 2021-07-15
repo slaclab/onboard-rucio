@@ -1,0 +1,32 @@
+#
+# Author: Wei Yang (SLAC National Accelerator Laboratory / Stanford University, 2018)
+#
+
+Bootstrap: yum
+OSVersion: 7
+MirrorURL: http://mirror.centos.org/centos-%{OSVERSION}/%{OSVERSION}/os/$basearch/
+Include: yum
+
+%labels
+Maintainer Wei.Yang
+Purpose rucio client environment
+
+%post
+  yum install -y curl hostname vi strace lsof telnet iputils which openssh-clients
+  yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+  curl -o /etc/yum.repos.d/dmc-el7.repo https://dmc-repo.web.cern.ch/dmc-repo/dmc-el7.repo
+
+  yum install -y python3 python3-pip boost-python36
+  yum install -y gfal2-python3 gfal2-plugin-gridftp gfal2-plugin-xrootd gfal2-plugin-file gfal2-plugin-http 
+  yum install -y python2-gfal2 python2-gfal2-util python3-gfal2 python3-gfal2-util gfal2-util-scripts
+  yum install -y voms-clients-cpp
+  yum install -y fts-rest-cli python-setuptools
+  yum install -y fts-client
+  yum install -y xrootd-client
+  python3 -m pip install -U pip
+  pip3 install rucio-clients
+
+  yum clean all
+
+  mkdir -p /etc/grid-security /afs /u /nfs /gpfs /sdf /cvmfs
+

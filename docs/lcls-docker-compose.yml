@@ -1,0 +1,58 @@
+version: "2"
+networks:
+  default:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.18.0.0/16
+          gateway: 172.18.0.1
+services:
+  rucio:
+    image: rucio/rucio-dev
+    hostname: rucio-dev.slac.stanford.edu
+    ports:
+      - "8443:8443"
+    networks:
+      - default 
+    links:
+      - ruciodb:ruciodb
+      - graphite:graphite
+    volumes:
+      - ../../../tools:/opt/rucio/tools:Z
+      - ../../../bin:/opt/rucio/bin:Z
+      - ../../../lib:/opt/rucio/lib:Z
+      - /etc/grid-security/certificates:/etc/grid-security/certificates
+      - /etc/grid-security/hostcert.pem:/etc/grid-security/hostcert.pem
+      - /etc/grid-security/hostkey.pem:/etc/grid-security/hostkey.pem
+      - /afs/slac.stanford.edu/g/lcls/rucio/server/x509proxy/x509up_u0:/opt/rucio/etc/usercertkey.pem
+      - /afs:/afs
+      - /tmp:/tmp
+      - ../../../myetc/rucio.cfg:/opt/rucio/etc/rucio.cfg
+      - ../../../myetc/httpd/conf.modules.d/00-ssl.conf:/etc/httpd/conf.modules.d/00-ssl.conf
+      - ../../../myetc/httpd/conf.d/rucio.conf:/etc/httpd/conf.d/rucio.conf
+    environment:
+      - X509_USER_CERT=/opt/rucio/etc/usercert.pem
+      - X509_USER_KEY=/opt/rucio/etc/userkey.pem
+      - RDBMS=postgres11
+  ruciodb:
+    image: postgres:11
+    environment:
+      - POSTGRES_USER=rucio
+      - POSTGRES_DB=rucio
+      - POSTGRES_PASSWORD=secret
+    ports:
+      - "5432:5432"
+    #command: ["-c", "fsync=off","-c", "synchronous_commit=off","-c", "full_page_writes=off"]
+    command: ["-c", "synchronous_commit=off"]
+    volumes:
+      # create a permanant storage for DB.
+      #- /opt/var.lib/postgresql/data:/var/lib/postgresql/data
+      - db:/var/lib/postgresql/data
+      - /tmp:/tmp
+  graphite:
+    image: graphiteapp/graphite-statsd
+    ports:
+      - "80:80"
+
+volumes:
+  db: {}
