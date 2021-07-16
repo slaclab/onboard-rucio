@@ -21,28 +21,7 @@ in a Singularity container.
 
 ### Create RSEs
 
-To create a non-deterministic RSE:
-```
-     rucio-admin rse add --non-deterministic TEST-USER_DATADISK
-     
-```
-For a deterministic one:
-```
-    rucio-admin rse add TEST-USER_DATADISK
-```
-Now check the default quota (0MB):
-``` 
-    rucio-admin account get-limits test-user TEST-USER_DATADISK
-```
-To set a new quota, e.g. 100GB:
-```
-    rucio-admin account set-limits test-user TEST-USER_DATADISK 100000000000
-```
-To return information on a RSE:
-```
-    rucio-admin rse info TEST-USER_DATADISK
-```
-For reference [**rucio-admin CLI**](https://rucio.readthedocs.io/en/latest/man/rucio-admin.html)
+The [Create RSE doc](./docs/CreateRSE.md) gives an example of how to create a RSE. 
 
 ### Interfacing with fts service
 
