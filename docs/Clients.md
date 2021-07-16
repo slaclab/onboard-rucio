@@ -17,6 +17,6 @@ To use it, login to CentOS 7 machine (e.g. centos7.slac.stanford.edu) and run
 ```
 sh /afs/slac/g/lcls/rucio/clients/singularity/start-rucio-client.sh 
 ```
-Once in the container environment, the default RUCIO_ACCOUNT variable is set the the same as your login name. Please 
+Once in the container environment, the default RUCIO_ACCOUNT variable is set to the same as your login name. Please 
 change this variable if your RUCIO_ACCOUNT name is something else.
 

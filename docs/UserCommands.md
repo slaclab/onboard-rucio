@@ -18,6 +18,7 @@ Note: (under ATLAS policy) an ordinary user can only own scope user.$RUCIO_ACCOU
 scope.
 
 #### Upload a file/DID to Rucio and a RSE
+
 An example of uploading a local file to `GRIDDEV06` (a RSE) as DID `user.$RUCIO_ACCOUNT:junk1`
 ```
     ruico -v upload --rse GRIDDEV06 --scope user.$RUCIO_ACCOUNT --name junk1 local_file
@@ -29,13 +30,18 @@ Given that this command does not specify a PFN (physical file name/path in the R
 to the lfn2pfn algorithm defined in the RSE.
 
 #### Register a file/DID to Rucio without upload
+
 It is also possible to register a DID with Rucio without uploading the file. The scenario is that the file has already 
-been uploaded by other means, and probably the actual PFN doesn't follow the lfn2pfn algorithm of the RSE.
-The command to register a DID is:
+been uploaded by other means, and prossibly the actual PFN does not follow the lfn2pfn algorithm of the RSE.
+The command to register a DID only is:
 ```
     rucio -v upload --rse RSE --scope user.$RUCIO_ACCOUNT --name junk1 --pfn path_on_storage --register-after-upload
 ```
 (please check, not sure about the above command)
 
 #### Replicate a file to a RSE
-Use the `rucio add-rule` command. Rucio will choose a source RSE, unless user specified where to replcated from.
+
+* Use the `rucio add-rule` command. Rucio will choose a source RSE, unless user specified the source RSE. The command
+will return a ruico rule_id (a long string).
+* Use the `rucio rule-info rule_id` command to check the status of replication.
+

@@ -20,7 +20,7 @@ rucio-conveyor-poller --run-once --older-than 0
 rucio-conveyor-finisher --run-once
 ```
 
-#### Clean up expierd replication rules
+#### Clean up expired replication rules
 ```
 rucio-judge-cleaner --run-once
 ```

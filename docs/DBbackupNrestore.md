@@ -24,8 +24,8 @@ docker-compose -f etc/docker/dev/docker-compose.yml up -d
 
 #### Sharing a Rucio DB with multple Rucio instances
 
-Since a Postgres DB can contain different Schemas. It is possible (but not tested) to use one Rucio DB for multiple 
+Since a Postgres DB can contain multiple Schemas. It is possible (not tested) to use one Rucio DB for multiple 
 Rucio instances, with each instance using its own Schema name. The default Schema in the Rucio container is 'dev'. 
-To use something different, update:
+For Rucio to use a different Schema name, update:
 * 'version_table_schema' in the [alembic] block of /opt/rucio/etc/alembic.ini
 * 'schema' in the [database] block of /opt/rucio/etc/rucio.cfg

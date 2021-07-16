@@ -2,17 +2,17 @@
 
 FTS services take data transfer requests from Rucio or from users, and manage those data transfers (similar to a batch 
 system).
-There is an FTS server available. The doc covers Rucio interaction with the FTS services. It does not cover how to 
+There is an FTS server available. This doc covers Rucio interaction with the FTS services. It does not cover how to 
 config/start/stop the FTS services.
 
 The FTS monitoring page is available at https://ruico-dev.slac.stanford.edu:8449/fts3/ftsmon.
 
-For Rucio to use FTS to transfer data, Rucio uses a X509 proxy to authenticate with FTS. This proxy is availe inside 
+For Rucio to use FTS to transfer data, Rucio uses a X509 proxy to authenticate with FTS. This proxy is available inside 
 the Rucio container environment at `/opt/rucio/etc/usercertkey.pem`. Outside of the container, this proxy is located at
 `/afs/slac.stanford.edu/g/lcls/rucio/server/x509proxy/x509up_u0`, and is renewed by a TRS cron job.
 
-Before Rucio use this X509 proxy to authenticate with FTS, this proxy needs to be manually delegated to FTS. The
-following command needs to be run predically to maintain a valid delegated X509 proxy in FTS:
+Before Rucio uses this X509 proxy to authenticate with FTS, this proxy must be manually delegated to FTS. So the
+following command needs to be run periodically to maintain a valid, delegated X509 proxy in FTS:
 
 ```
 fts-delegation-init -s https://rucio-dev.slac.stanford.edu:8446 -v -j 
