@@ -25,7 +25,8 @@ The [Create RSE doc](./docs/CreateRSE.md) gives an example of how to create a RS
 
 ### Interfacing with fts service
 
-The fts service is pre-configured in docker-compose.yml in the rucio repo.
+The [Interaction with FTS doc](./docs/InteractWithFTS.md) describes requirement of manually delegating a X509 proxy to
+the FTS servers. And info about FTS server monitoring.
 
 ### Data Identifiers (DID), Rucio Storage Element (RSE), and Scopes
 
