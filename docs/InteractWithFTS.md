@@ -1,8 +1,8 @@
 ### Interaction with FTS server
 
-FTS services takes data transfer request from Rucio or from users, and manage those data transfer (similar to a batch 
+FTS services take data transfer requests from Rucio or from users, and manage those data transfers (similar to a batch 
 system).
-There is an FTS server available. The doc covers Rucio interaction with FTS server. It does not cover how to 
+There is an FTS server available. The doc covers Rucio interaction with the FTS services. It does not cover how to 
 config/start/stop the FTS services.
 
 The FTS monitoring page is available at https://ruico-dev.slac.stanford.edu:8449/fts3/ftsmon.

@@ -10,7 +10,7 @@ For general reference, here's the latest official online documentation: [**Rucio
 The [Installation doc](./docs/Installation.md) describes how to install, how to do initial bootstripe and unit test.
 accounts.
 
-### Adding Acccounts
+### Add Acccounts
 
 The [Accounts doc](./docs/Accounts.md) describes how to add an Rucio account, including accounts with admin privilege.
 
@@ -23,7 +23,7 @@ in a Singularity container.
 
 The [Create RSE doc](./docs/CreateRSE.md) gives an example of how to create a RSE. 
 
-### Interfacing with FTS service
+### Interact with FTS service
 
 The [Interaction with FTS doc](./docs/InteractWithFTS.md) describes requirement of manually delegating a X509 proxy to
 the FTS servers. And info about FTS server monitoring.
@@ -32,6 +32,10 @@ the FTS servers. And info about FTS server monitoring.
 
 The [Backup and Restore Rucio DB](./docs/DBbackupNrestore.md) gives basic, invasive mechanism for backup and restore
 of the Rucio Postgres DB, as well as a (not the best) mechanism to share Rucio DB for multiple Rucio instances.
+
+### Basic Rucio operation and daemons
+
+The [Rucio dadmons](./docs/Daemons.md) gives info about what daemons need to be run after a Rucio rule is added, when a DID expireds, etc.
 
 ### Data Identifiers (DID), Rucio Storage Element (RSE), and Scopes
 
