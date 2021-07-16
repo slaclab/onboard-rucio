@@ -59,5 +59,9 @@ rucio-admin rse add-protocol \
   --domain-json \
     '{"lan": {"read": 1, "write": 1, "delete": 1}, "wan": {"read": 1, "write": 1, "delete": 1, "third_party_copy": 1}}' 
   GRIDDEV06
+rucio-admin rse add-distance MOCK GRIDDEV06 --distance 1 --ranking 1
 ```
-Note that `--domain-json` is used and all read/write/... are set to non-zero to avoid Exception at https://github.com/rucio/rucio/blob/master/lib/rucio/rse/rsemanager.py#L141 (when uploading)
+Note:
+* that `--domain-json` is used and all read/write/... are set to non-zero to avoid Exception at https://github.com/rucio/rucio/blob/master/lib/rucio/rse/rsemanager.py#L141 (when uploading)
+* the `rucio-admin rse add-distance` command is needed, otherwise, rucio-conveyor will not submit data transfer
+      from MOCK to GRIDDEV06.

@@ -37,16 +37,6 @@ of the Rucio Postgres DB, as well as a (not the best) mechanism to share Rucio D
 
 The [Rucio dadmons](./docs/Daemons.md) gives info about what daemons need to be run after a Rucio rule is added, when a DID expireds, etc.
 
-### Data Identifiers (DID), Rucio Storage Element (RSE), and Scopes
+### User commands
 
-To query existing RSEs and Scopes:
-```
-    rucio list-rses
-    rucio list-scopes
-```
-To add a new scope:
-```
-    rucio-admin scope add --account test-user --scope user.test-user
-```
-In rucio, a DID has the following format:
-        scope:name , e.g. user.test-user:test.file.1
+The [User commands doc](./docs/UserCommands.md) serve as a FAQ about how to interact with Rucio as a user.
