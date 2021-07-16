@@ -7,7 +7,7 @@ This doc assumes Rucio DB is a Postgres DB.
 ```
 docker-compose -f etc/docker/dev/docker-compose.yml down
 docker-compose -f etc/docker/dev/docker-compose.yml up -d ruciodb
-docker exec -it dev_ruciodb_1 pg_dump -U rucio rucio > /tmp/rucio.sql # no need to backup DB postgres
+docker exec -it dev_ruciodb_1 pg_dump -U rucio rucio > /tmp/rucio.bkup.sql # no need to backup DB postgres
 ```
 The first two `docker-compose` commands may be skipped (not tested)
 
@@ -18,7 +18,7 @@ docker-compose -f etc/docker/dev/docker-compose.yml down
 docker-compose -f etc/docker/dev/docker-compose.yml up -d ruciodb
 echo drop database rucio | psql -U rucio postgres
 echo create database rucio | psql -U rucio postgres
-docker exec -it dev_ruciodb_1 psql -U rucio rucio < /tmp/rucio.sql
+docker exec -it dev_ruciodb_1 psql -U rucio rucio < /tmp/rucio.bkup.sql
 docker-compose -f etc/docker/dev/docker-compose.yml up -d
 ```
 
