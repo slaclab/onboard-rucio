@@ -60,3 +60,4 @@ rucio-admin rse add-protocol \
     '{"lan": {"read": 1, "write": 1, "delete": 1}, "wan": {"read": 1, "write": 1, "delete": 1, "third_party_copy": 1}}' 
   GRIDDEV06
 ```
+Note that `--domain-json` is used and all read/write/... are set to non-zero to avoid Exception at https://github.com/rucio/rucio/blob/master/lib/rucio/rse/rsemanager.py#L141 (when uploading)
