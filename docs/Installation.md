@@ -14,8 +14,9 @@ These two repos in slaclab were forks from their upstream repos in rucio/rucio a
 These container images the essential tools installed for Python development, including VI editor.
 
 In the rucio repo, changes were made:
-    etc/docker/dev/docker-compose.yml: persists the data catalogs in the configured Postgres backend, 
-                                       and integration with fts.
+    etc/docker/dev/docker-compose.yml ([example for LCLS](./lcls-docker-compose.yml):
+    persists the data catalogs in the configured Postgres backend, 
+    and integration with fts.
 
 In the containers repo, changes for the project have been made in the following files:
     dev/Dockerfile: updates the repo target  
@@ -32,7 +33,7 @@ To launch the now ready containers, in rucio/etc/docker/dev:
 ```
     docker-compose --file docker-compose.yml up -d
 ```
-If successful, three containers will be up and running: 1)dev_rucio_1 (server) 2) dev_rucio_db1 (Postgres) 3) dev_graphite_1 (monitoring). Here is an example [docker-compose.yml for lcls](./lcls-docker-compose.yml).
+If successful, three containers will be up and running: 1)dev_rucio_1 (server) 2) dev_rucio_db1 (Postgres) 3) dev_graphite_1 (monitoring).
 
 To stop the rucio containers:
 ```
@@ -110,6 +111,7 @@ Check the default user (should return root):
     rucio whoami 
 ```
 
+(DO NOT DO THE FOLLOWING ON A PRODUCTION MACHINE. It will wrap out the Rucio DB). 
 To run ALL (will take a while) the provided unit tests inside the rucio container to verify the status:
 ```
     tools/run_tests_docker.sh
