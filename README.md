@@ -35,7 +35,7 @@ of the Rucio Postgres DB, as well as a (not the best) mechanism to share Rucio D
 
 ### Basic Rucio operation and daemons
 
-The [Rucio dadmons](./docs/Daemons.md) gives info about what daemons need to be run after a Rucio rule is added, when a DID expireds, etc.
+The [Rucio daemons](./docs/Daemons.md) gives info about what daemons need to be run after a Rucio rule is added, when a DID expireds, etc.
 
 ### User commands
 

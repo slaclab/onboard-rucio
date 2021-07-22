@@ -53,15 +53,17 @@ rucio-admin rse add GRIDDEV06
 rucio-admin rse set-attribute --rse GRIDDEV06 --key fts --value https://rucio-dev.slac.stanford.edu:8446
 rucio-admin rse add-protocol \
   --host griddev06.slac.stanford.edu \
-  --scheme root 
-  --prefix '//xrootd' 
+  --scheme root \
+  --prefix '//xrootd' \
   --port 1094 \
   --domain-json \
-    '{"lan": {"read": 1, "write": 1, "delete": 1}, "wan": {"read": 1, "write": 1, "delete": 1, "third_party_copy": 1}}' 
+    '{"lan":{"read":1, "write":1, "delete":1}, "wan":{"read":1, "write":1, "delete":1, "third_party_copy":1}}' \
   GRIDDEV06
 rucio-admin rse add-distance MOCK GRIDDEV06 --distance 1 --ranking 1
+rucio-admin rse add-distance GRIDDEV06 MOCK --distance 1 --ranking 1
 ```
 Note:
-* that `--domain-json` is used and all read/write/... are set to non-zero to avoid Exception at https://github.com/rucio/rucio/blob/master/lib/rucio/rse/rsemanager.py#L141 (when uploading)
-* the `rucio-admin rse add-distance` command is needed, otherwise, rucio-conveyor will not submit data transfer
-      from MOCK to GRIDDEV06.
+* doubl slash in '--prefix' path
+* `--domain-json` is used and all read/write/... are set to non-zero to avoid exception at https://github.com/rucio/rucio/blob/master/lib/rucio/rse/rsemanager.py#L141 (when uploading)
+* The two `rucio-admin rse add-distance` commands are needed, otherwise, rucio-conveyor will not submit data transfer
+      from MOCK to GRIDDEV06, and vice verse.

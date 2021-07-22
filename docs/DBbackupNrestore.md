@@ -16,9 +16,9 @@ The first two `docker-compose` commands may be skipped (not tested)
 ```
 docker-compose -f etc/docker/dev/docker-compose.yml down
 docker-compose -f etc/docker/dev/docker-compose.yml up -d ruciodb
-echo drop database rucio | psql -U rucio postgres
-echo create database rucio | psql -U rucio postgres
-docker exec -it dev_ruciodb_1 psql -U rucio rucio < /tmp/rucio.bkup.sql
+echo drop database rucio | docker exec dev_ruciodb_1 psql -U rucio postgres
+echo create database rucio | docker exec dev_ruciodb_1 psql -U rucio postgres
+docker exec dev_ruciodb_1 psql -U rucio rucio < /tmp/rucio.bkup.sql
 docker-compose -f etc/docker/dev/docker-compose.yml up -d
 ```
 

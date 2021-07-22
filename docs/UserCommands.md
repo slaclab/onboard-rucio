@@ -21,7 +21,7 @@ scope.
 
 An example of uploading a local file to `GRIDDEV06` (a RSE) as DID `user.$RUCIO_ACCOUNT:junk1`
 ```
-    ruico -v upload --rse GRIDDEV06 --scope user.$RUCIO_ACCOUNT --name junk1 local_file
+    rucio -v upload --rse GRIDDEV06 --scope user.$RUCIO_ACCOUNT --name junk1 local_file
 ```
 This command will first create the DID in Rucio, then use a data transfer protocol (gridftp, root, https, etc.) offered
 by the RSE to upload the file. If the upload fails, the command can be run again after issue is fixed.
@@ -38,6 +38,19 @@ The command to register a DID only is:
     rucio -v upload --rse RSE --scope user.$RUCIO_ACCOUNT --name junk1 --pfn path_on_storage --register-after-upload
 ```
 (please check, not sure about the above command)
+
+#### Check the uploaded file
+
+A few useful commands to check the just uploaded file/DID
+```
+   rucio list-file-replicas user.$RUCIO_ACCOUNT:junk1
+   rucio list-rules user.$RUCIO_ACCOUNT:junk1
+```
+Suppose the second command return Rucio `rule_id` `4b8f63659f564791913951dbcfc70c9b`, then the following will return
+more info about this Rucio rule
+```
+   rucio rule-info 4b8f63659f564791913951dbcfc70c9b
+```
 
 #### Replicate a file to a RSE
 

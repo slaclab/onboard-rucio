@@ -15,7 +15,7 @@ Before Rucio uses this X509 proxy to authenticate with FTS, this proxy must be m
 following command needs to be run periodically to maintain a valid, delegated X509 proxy in FTS:
 
 ```
-fts-delegation-init -s https://rucio-dev.slac.stanford.edu:8446 -v -j 
+fts-delegation-init -s https://rucio-dev.slac.stanford.edu:8446 -v -j \
     --proxy /afs/slac/g/lcls/rucio/server/x509proxy/x509up_u0 -e 86400  # valid for one day
 ```
 One can run this comamnd from the centrally managed (Client container](./Clients.md). The output of the command 
