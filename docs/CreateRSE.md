@@ -70,5 +70,6 @@ Note:
       from MOCK to GRIDDEV06, and vice verse.
 * When adding FTS servers, IP address `134.79.129.252` is used instead of host name `rucio-dev.slac.stanford.edu`. This
 is because we are running Rucio and FTS services in Docker containers, all on `rucio-dev.slac.stanford.edu`. Most of these
-contained are NAT-ed yet all of them use hostname `rucio-dev.slac.stanford.edu` inside the container. So for the Rucio
+contained are NAT-ed yet all of them use hostname `rucio-dev.slac.stanford.edu` inside the container (in order to use the
+InCommon IGTF host certificate). So for the Rucio
 container to actually reach the FTS container on the same host, the Rucio container has to use the IP address.
