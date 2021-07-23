@@ -50,7 +50,8 @@ by FTS server at https://rucio-dev.slac.stanford.edu:8446 (The corresponding mon
 https://rucio-dev.slac.stanford.edu:8449//fts3/ftsmon)
 ```
 rucio-admin rse add GRIDDEV06
-rucio-admin rse set-attribute --rse GRIDDEV06 --key fts --value https://rucio-dev.slac.stanford.edu:8446
+# Do not use: rucio-admin rse set-attribute --rse GRIDDEV06 --key fts --value https://rucio-dev.slac.stanford.edu:8446
+rucio-admin rse set-attribute --rse GRIDDEV06 --key fts --value https://134.79.129.252:8446
 rucio-admin rse add-protocol \
   --host griddev06.slac.stanford.edu \
   --scheme root \
@@ -67,3 +68,7 @@ Note:
 * `--domain-json` is used and all read/write/... are set to non-zero to avoid exception at https://github.com/rucio/rucio/blob/master/lib/rucio/rse/rsemanager.py#L141 (when uploading)
 * The two `rucio-admin rse add-distance` commands are needed, otherwise, rucio-conveyor will not submit data transfer
       from MOCK to GRIDDEV06, and vice verse.
+* When adding FTS servers, IP address `134.79.129.252` is used instead of host name `rucio-dev.slac.stanford.edu`. This
+is because we are running Rucio and FTS services in Docker containers, all on `rucio-dev.slac.stanford.edu`. Most of these
+contained are NAT-ed yet all of them use hostname `rucio-dev.slac.stanford.edu` inside the container. So for the Rucio
+container to actually reach the FTS container on the same host, the Rucio container has to use the IP address.
