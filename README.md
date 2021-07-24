@@ -21,7 +21,8 @@ in a Singularity container.
 
 ### Create RSEs
 
-The [Create RSE doc](./docs/CreateRSE.md) gives an example of how to create a RSE. 
+The [Create RSE doc](./docs/CreateRSE.md) gives an example of how to create a RSE, and how to completely delete an RSE
+(as oppose to just disable an RSE)
 
 ### Interact with FTS service
 

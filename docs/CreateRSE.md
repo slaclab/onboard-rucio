@@ -73,3 +73,22 @@ is because we are running Rucio and FTS services in Docker containers, all on `r
 contained are NAT-ed yet all of them use hostname `rucio-dev.slac.stanford.edu` inside the container (in order to use the
 InCommon IGTF host certificate). So for the Rucio
 container to reach the FTS container on the same host, the Rucio container has to use the IP address.
+
+### How to delete an RSE
+
+Let's try to delete RSE XRD1. Command `rucio-admin rse delete XRD1` will only DISABLE this RSE (equivalent to 
+`update dev.rses set deleted='t' where rse='XRD1';`). After this command, the RSE is not visible via the Rucio
+commands. But it is still there in DB.
+
+Using this SQL command `update dev.rses set deleted='f' where rse='XRD1';` will make it visible again.
+
+To actually DELETE an RSE, do 
+* clean/delete replicas from the RSE
+* `rucio-admin rse info XRD1` to see all protocols and attributes of the RSE, and use 
+`rucio-admin rse delete-protocol ...` and `rucio-admin rse delete-attribute ...` delete all of them
+* (maybe needed), run `rucio-abacus-rse --run-once`
+* (maybe needed), run `rucio-abacus-account --run-once` 
+* `rucio-admin rse delete XRD1` or `update dev.rses set deleted='t' where rse='XRD1';`
+* `delete from dev.account_usage where rse_id=(select id from dev.rses where rse='XRD1');`
+* `delete from dev.rse_usage where rse_id=(select id from dev.rses where rse='XRD1');`
+* `delete from dev.rses where rse='XRD1';`
