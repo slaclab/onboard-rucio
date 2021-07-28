@@ -80,15 +80,27 @@ Let's try to delete RSE XRD1. Command `rucio-admin rse delete XRD1` will only DI
 `update dev.rses set deleted='t' where rse='XRD1';`). After this command, the RSE is not visible via the Rucio
 commands. But it is still there in DB.
 
-Using this SQL command `update dev.rses set deleted='f' where rse='XRD1';` will make it visible again.
+Using this SQL command `update dev.rses set deleted='f' where rse='XRD1';` will make it visible again. Note for this SQL
+and all SQLs below: when DB alembic_verion is updated, some of the SQLs will not work. This is an disadvantage
+of using SQL.
+
+To list what is in a RSE, do
+* `select * from dev.replicas where rse_id = (select id from dev.rses where rse='XRD1');`
+* apple the same to table `dev.quarantined_replicas`, `dev.bad_replicas` and `dev.*_history`.
 
 To actually DELETE a RSE, do 
 * clean/delete replicas from the RSE
 * `rucio-admin rse info XRD1` to see all protocols and attributes of the RSE, and use 
-`rucio-admin rse delete-protocol ...` and `rucio-admin rse delete-attribute ...` delete all of them
+`rucio-admin rse delete-protocol ...` and `rucio-admin rse delete-attribute ...` to delete all of them, or use SQL:
+   * `delete from dev.rse_protocols where rse_id = (select id from dev.rses where rse='XRD1');
+   * `delete from dev.rse_attr_map  where rse_id = (select id from dev.rses where rse='XRD1');
 * (maybe needed), run `rucio-abacus-rse --run-once`
 * (maybe needed), run `rucio-abacus-account --run-once` 
 * `rucio-admin rse delete XRD1` or `update dev.rses set deleted='t' where rse='XRD1';`
 * `delete from dev.account_usage where rse_id=(select id from dev.rses where rse='XRD1');`
 * `delete from dev.rse_usage where rse_id=(select id from dev.rses where rse='XRD1');`
 * `delete from dev.rses where rse='XRD1';`
+
+The complexity of the above shows that deleting a RSE isn't always a good idea. It is difficutl to completely delete 
+all references to a RSE in the Rucio DB. Unless there is a need, it is better to just disable a RSE.
+
