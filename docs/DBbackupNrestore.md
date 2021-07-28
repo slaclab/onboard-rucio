@@ -5,8 +5,8 @@ This doc assumes Rucio DB is a Postgres DB.
 #### Back Rucio DB
 
 ```
-docker-compose -f etc/docker/dev/docker-compose.yml down
-docker-compose -f etc/docker/dev/docker-compose.yml up -d ruciodb
+docker-compose -f etc/docker/dev/lcls-docker-compose.yml down
+docker-compose -f etc/docker/dev/lcls-docker-compose.yml up -d ruciodb
 docker exec dev_ruciodb_1 pg_dump -U rucio rucio > /tmp/rucio.bkup.sql # no need to backup DB postgres
 ```
 The first two `docker-compose` commands may be skipped (not tested)
@@ -14,13 +14,13 @@ The first two `docker-compose` commands may be skipped (not tested)
 #### Restore Rucio DB
 
 ```
-docker-compose -f etc/docker/dev/docker-compose.yml down
-docker-compose -f etc/docker/dev/docker-compose.yml up -d ruciodb
+docker-compose -f etc/docker/dev/lcls-docker-compose.yml down
+docker-compose -f etc/docker/dev/lcls-docker-compose.yml up -d ruciodb
 #echo drop database rucio | docker exec dev_ruciodb_1 psql -U rucio postgres
 #echo create database rucio | docker exec dev_ruciodb_1 psql -U rucio postgres
 echo drop schema dev cascade | docker exec -i dev_ruciodb_1 psql -U rucio rucio
 docker exec -i dev_ruciodb_1 psql -U rucio rucio < /tmp/rucio.bkup.sql
-docker-compose -f etc/docker/dev/docker-compose.yml up -d
+docker-compose -f etc/docker/dev/lcls-docker-compose.yml up -d
 ```
 
 #### Sharing a Rucio DB with multple Rucio instances
