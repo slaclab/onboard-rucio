@@ -41,5 +41,5 @@ Examples:
 
 ##### Add adler32 to a file that only has MD5
 
-`update dev.dids set adler32='f4168743' where md5='bfec14dd0fd2e733df4a7d00511f5a0c';`
-`update dev.replicas set adler32='f4168743' where md5='bfec14dd0fd2e733df4a7d00511f5a0c';`
+* `update dev.dids set adler32='f4168743' where md5='bfec14dd0fd2e733df4a7d00511f5a0c';`
+* `update dev.replicas set adler32='f4168743' where md5='bfec14dd0fd2e733df4a7d00511f5a0c';`
