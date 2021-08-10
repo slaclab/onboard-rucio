@@ -17,6 +17,8 @@ the same stream is opened incrementing the chunk number by one. The files are wr
      with <filename>:
      <experiment>-r<run-nr>-s<stream-id>-c<chunk-id>.xtc[2]
 
+     LFN: /<instrument>/<experiment>/xtc/<filename>
+
 The <prefix> is site specific but the path elements after the prefix are identical at each site.
 The raw data are written to the *xtc* folder. For each raw data file one (LCLS-II) or two
 (LCLS-I) index files are created that allow fast random access to the data. These files are written to
@@ -38,6 +40,23 @@ the _hdf5_ folder of an experiment:
 
 The filenames have some format, typically containing the experiment name and run number but it is up
 to users and therefore no assumptions can be made.  
+
+### Tape replica
+
+The xtc and hdf5 files are archived to tape (HPSS). For the xtc files two copies are created either both
+at SLAC or one at SLAC and one at NERSC. The xtc and smd.xtc are archived but not the xtc.idx files. Files
+are singly transferred to tape no bundling of small files into a bigger one is performed (but should be
+considered).
+For SLAC files are grouped into tape families using the instrument name and folder name (xtc, hdf5).
+For example _/psdm/CXI/xtc_ is the family for all cxi xtc files and _/psdm/CXI/hdf5_ for hdf5 files.
+This means that when a file is put on tape besides adding a prefix to a files LFN the experiment name
+and folder name in the LFN have to be swapped e.g.:
+
+    LFN: /mfx/mfx12345/xtc/mfx12345-r2002-s03-c00.xtc
+    tape path: /psdm//mfx/xtc/mfx12345/mfx12345-r2002-s03-c00.xtc
+
+At NERSC no such mapping is needed only a prefix is added (/home/p/psdatmgr/hpssprod/psdm) to the LFN.
+
 
 ## Mapping to RUCIO
 
