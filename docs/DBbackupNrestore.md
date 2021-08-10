@@ -30,3 +30,7 @@ Rucio instances, with each instance using its own Schema name. The default Schem
 For Rucio to use a different Schema name, update:
 * 'version_table_schema' in the [alembic] block of /opt/rucio/etc/alembic.ini
 * 'schema' in the [database] block of /opt/rucio/etc/rucio.cfg
+
+#### Dump all PFNs of a RSE
+
+`select scope,name,bytes,state from dev.replicas where rse_id=(select id from dev.rses where rse='GRIDDEV06')`
