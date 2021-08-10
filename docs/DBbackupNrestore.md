@@ -31,6 +31,15 @@ For Rucio to use a different Schema name, update:
 * 'version_table_schema' in the [alembic] block of /opt/rucio/etc/alembic.ini
 * 'schema' in the [database] block of /opt/rucio/etc/rucio.cfg
 
-#### Dump all PFNs of a RSE
+#### Useful operations directly on DB:
+
+Examples:
+
+##### Dump all PFNs of a RSE
 
 `select scope,name,bytes,state from dev.replicas where rse_id=(select id from dev.rses where rse='GRIDDEV06')`
+
+##### Add adler32 to a file that only has MD5
+
+`update dev.dids set adler32='f4168743' where md5='bfec14dd0fd2e733df4a7d00511f5a0c';`
+`update dev.replicas set adler32='f4168743' where md5='bfec14dd0fd2e733df4a7d00511f5a0c';`
