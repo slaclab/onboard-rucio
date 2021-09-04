@@ -92,8 +92,8 @@ To actually DELETE a RSE, do
 * clean/delete replicas from the RSE
 * `rucio-admin rse info XRD1` to see all protocols and attributes of the RSE, and use 
 `rucio-admin rse delete-protocol ...` and `rucio-admin rse delete-attribute ...` to delete all of them, or use SQL:
-   * `delete from dev.rse_protocols where rse_id = (select id from dev.rses where rse='XRD1');
-   * `delete from dev.rse_attr_map  where rse_id = (select id from dev.rses where rse='XRD1');
+   * `delete from dev.rse_protocols where rse_id = (select id from dev.rses where rse='XRD1');`
+   * `delete from dev.rse_attr_map  where rse_id = (select id from dev.rses where rse='XRD1');`
 * (maybe needed), run `rucio-abacus-rse --run-once`
 * (maybe needed), run `rucio-abacus-account --run-once` 
 * `rucio-admin rse delete XRD1` or `update dev.rses set deleted='t' where rse='XRD1';`
