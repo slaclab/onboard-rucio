@@ -55,6 +55,6 @@ more info about this Rucio rule
 #### Replicate a file to a RSE
 
 * Use the `rucio add-rule` command. Rucio will choose a source RSE, unless user specified the source RSE. The command
-will return a ruico rule_id (a long string).
+will return a rucio rule_id (a long string).
 * Use the `rucio rule-info rule_id` command to check the status of replication.
 

@@ -5,7 +5,7 @@ system).
 There is an FTS server available. This doc covers Rucio interaction with the FTS services. It does not cover how to 
 config/start/stop the FTS services.
 
-The FTS monitoring page is available at https://ruico-dev.slac.stanford.edu:8449/fts3/ftsmon.
+The FTS monitoring page is available at https://rucio-dev.slac.stanford.edu:8449/fts3/ftsmon.
 
 For Rucio to use FTS to transfer data, Rucio uses a X509 proxy to authenticate with FTS. This proxy is available inside 
 the Rucio container environment at `/opt/rucio/etc/usercertkey.pem`. Outside of the container, this proxy is located at
