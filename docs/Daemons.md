@@ -20,6 +20,18 @@ rucio-conveyor-poller --run-once --older-than 0
 rucio-conveyor-finisher --run-once
 ```
 
+#### Clean up DIDs (with no replicas)
+After a DID of type DATASET or CONTAINER is erased (using `rucio erase` command), run the following
+```
+rucio-judge-evaluator --run-once
+rucio-undertaker --run-once
+```
+This will delete those DIDs from the `dids` table. 
+
+It seems DID of type FILE is not eraseble - `rucio erase did` will set its `expired_at` in the 
+`dids` table to 24 hours later. But `rucio-undertaker` will set `expired_at` to None (see
+the end of function `delete_dids()` in `lib/rucio/core/did.py`).
+
 #### Clean up expired replication rules
 ```
 rucio-judge-cleaner --run-once
