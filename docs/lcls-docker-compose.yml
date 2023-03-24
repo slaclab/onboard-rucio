@@ -39,7 +39,7 @@ services:
     environment:
       - POSTGRES_USER=rucio
       - POSTGRES_DB=rucio
-      - POSTGRES_PASSWORD=secret
+      - POSTGRES_PASSWORD=<please_change>
     ports:
       - "5432:5432"
     #command: ["-c", "fsync=off","-c", "synchronous_commit=off","-c", "full_page_writes=off"]
